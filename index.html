@@ -382,7 +382,7 @@ document.querySelectorAll('.copy').forEach(function(b){
   });
 });
 var iv=document.getElementById('introVideo');
-iv.addEventListener('loadedmetadata',function(){iv.hidden=false;document.getElementById('videoEmpty').hidden=true});
+var DRIVE_LINK='https://drive.google.com/file/d/1dTbuW8iyxhRlvteJjmnsZoVGYZcvU9AF/view?usp=sharing';
 iv.src='assets/intro.mp4';
 var vf=document.getElementById('videoFile');if(vf)vf.addEventListener('change',function(e){
   var f=e.target.files&&e.target.files[0];if(!f)return;
