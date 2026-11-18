@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ohidur Rahman Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap">
+<style>
+/* Layout: sticky top nav, split hero (text + framed portrait), then stacked sections on white with sand panels. White and brown only. */
+:root{
+  --white:#ffffff;
+  --paper:#fffdfb;
+  --sand:#f6eee6;
+  --sand-2:#ecdfd1;
+  --tan:#c8a07a;
+  --brown:#7a4a2a;
+  --brown-deep:#4a2c17;
+  --ink:#2a1a10;
+  --muted:#6f5a4b;
+  --line:#e6d8ca;
+  --font-display:'Sora','Manrope',system-ui,sans-serif;
+  --font-body:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{
+  background:var(--white);color:var(--ink);
+  font-family:var(--font-body);font-size:16px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--white);z-index:30}
+h1,h2,h3{font-family:var(--font-display);line-height:1.15;margin:0;text-wrap:balance;color:var(--brown-deep)}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brown);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  margin-left:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1*max(16px,env(safe-area-inset-right,0px)));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.brand{font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--brown-deep);text-decoration:none;white-space:nowrap}
+.brand span{color:var(--tan)}
+.links{display:flex;gap:4px;overflow-x:auto;min-width:0;scrollbar-width:none}
+.links::-webkit-scrollbar{display:none}
+.links a{padding:8px 12px;border-radius:999px;text-decoration:none;font-size:.9rem;font-weight:600;color:var(--muted);white-space:nowrap}
+.links a:hover{background:var(--sand);color:var(--brown-deep)}
+
+/* hero */
+.hero{padding-block:56px 72px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.5fr);gap:56px;align-items:center}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brown);background:var(--sand);padding:6px 12px;border-radius:999px}
+.hero h1{font-size:clamp(2.4rem,6vw,4.1rem);margin-top:20px;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--brown)}
+.role{margin-top:14px;font-family:var(--font-display);font-weight:500;font-size:1.15rem;color:var(--muted)}
+.lede{margin-top:20px;max-width:56ch;color:var(--muted)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:700;font-size:.95rem;text-decoration:none;border:1.5px solid var(--brown);transition:background .2s,color .2s,transform .2s}
+.btn.solid{background:var(--brown);color:var(--white)}
+.btn.solid:hover{background:var(--brown-deep);border-color:var(--brown-deep)}
+.btn.ghost{color:var(--brown)}
+.btn.ghost:hover{background:var(--sand)}
+.facts{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:36px;padding-top:24px;border-top:1px solid var(--line)}
+.fact b{display:block;font-family:var(--font-display);font-size:1.5rem;color:var(--brown-deep)}
+.fact span{font-size:.82rem;color:var(--muted)}
+
+.portrait{position:relative;justify-self:center;width:100%;max-width:240px}
+.portrait::before{content:"";position:absolute;inset:auto -14px -14px auto;width:92%;height:92%;background:var(--sand-2);border-radius:50%}
+.portrait .frame{position:relative;aspect-ratio:1/1;border-radius:50%;overflow:hidden;background:var(--sand);border:6px solid var(--white);box-shadow:0 0 0 1.5px var(--tan)}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
+.badge{position:absolute;left:-14px;bottom:24px;background:var(--brown);color:var(--white);padding:8px 12px;border-radius:12px;font-size:.74rem;line-height:1.35;box-shadow:0 10px 24px rgba(74,44,23,.25)}
+.badge b{display:block;font-family:var(--font-display);font-size:.95rem}
+
+/* sections */
+section{padding-block:72px}
+section.alt{background:var(--sand);margin-left:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1*max(16px,env(safe-area-inset-right,0px)));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.head{display:flex;flex-direction:column;gap:10px;margin-bottom:36px}
+.head small{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brown)}
+.head h2{font-size:clamp(1.7rem,3.6vw,2.4rem)}
+.head .bar{width:56px;height:4px;border-radius:4px;background:var(--tan)}
+
+.about{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:40px}
+.about p{color:var(--muted);font-size:1.05rem}
+.card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:24px}
+.alt .card{border-color:var(--sand-2)}
+.info{display:grid;gap:16px}
+.info div{display:grid;gap:2px;min-width:0}
+.info dt{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brown)}
+.info dd{margin:0;overflow-wrap:anywhere;color:var(--ink)}
+.info{margin:0}
+
+.timeline{display:grid;gap:20px;position:relative;padding-left:28px}
+.timeline::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--sand-2)}
+.tl{position:relative}
+.tl::before{content:"";position:absolute;left:-28px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--white);border:4px solid var(--brown)}
+.tl .when{font-size:.8rem;font-weight:700;letter-spacing:.08em;color:var(--brown)}
+.tl h3{font-size:1.15rem;margin-top:4px}
+.tl .where{color:var(--muted);margin-top:2px}
+.pill{display:inline-block;margin-top:10px;padding:4px 12px;border-radius:999px;background:var(--sand);color:var(--brown-deep);font-weight:700;font-size:.82rem}
+.alt .pill{background:var(--white)}
+.course{margin-top:20px}
+.course h3{font-size:1rem;margin-bottom:12px}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:6px 14px;border-radius:999px;font-size:.88rem;font-weight:600;background:var(--sand);color:var(--brown-deep);border:1px solid var(--sand-2)}
+.alt .chip{background:var(--white)}
+
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px}
+.skill h3{font-size:1.05rem;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.skill h3::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--brown)}
+
+.work ul{margin:16px 0 0;padding-left:20px;display:grid;gap:10px;color:var(--muted)}
+.work li::marker{color:var(--tan)}
+
+.proj{display:flex;flex-direction:column;gap:14px;transition:transform .2s,box-shadow .2s}
+.proj:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(74,44,23,.12)}
+.proj .ico{width:48px;height:48px;border-radius:14px;background:var(--brown);color:var(--white);display:grid;place-items:center}
+.proj h3{font-size:1.2rem}
+.proj p{color:var(--muted);font-size:.96rem}
+.proj .chips{margin-top:auto}
+
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px}
+.co{display:grid;gap:14px}
+.co li{list-style:none;display:grid;gap:2px}
+.co ul{margin:0;padding:0;display:grid;gap:16px}
+.co b{font-family:var(--font-display);color:var(--brown-deep);font-size:.98rem}
+.co span{color:var(--muted);font-size:.95rem}
+.lang{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--sand-2)}
+.lang:last-child{border-bottom:0}
+.lang span:last-child{color:var(--muted)}
+
+.contact{background:var(--brown-deep);color:var(--white);border-radius:28px;padding:48px 32px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px}
+.contact h2{color:var(--white);font-size:clamp(1.7rem,3.6vw,2.4rem)}
+.contact p{color:#e8d6c4;margin-top:12px;max-width:42ch}
+.rows{display:grid;gap:14px;min-width:0}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:14px 16px;min-width:0}
+.row div{min-width:0}
+.row small{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tan);font-weight:700}
+.row span{overflow-wrap:anywhere}
+.copy{flex:none;background:var(--tan);color:var(--brown-deep);border:0;border-radius:999px;padding:7px 14px;font:inherit;font-size:.8rem;font-weight:700;cursor:pointer}
+.copy:hover{background:var(--white)}
+
+.video-box{max-width:860px;margin:0 auto}
+.player{position:relative;aspect-ratio:16/9;border-radius:22px;overflow:hidden;background:var(--brown-deep);border:1px solid var(--sand-2);box-shadow:0 18px 40px rgba(74,44,23,.15)}
+.player video{width:100%;height:100%;display:block;background:var(--brown-deep);object-fit:contain}
+.empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px;color:#e8d6c4}
+.empty .play{width:72px;height:72px;border-radius:50%;background:var(--tan);color:var(--brown-deep);display:grid;place-items:center}
+.empty b{font-family:var(--font-display);color:var(--white);font-size:1.15rem}
+.empty span{max-width:44ch;font-size:.92rem}
+.vbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;color:var(--muted);font-size:.9rem}
+.vbar label{cursor:pointer}
+.vbar input{position:absolute;opacity:0;width:1px;height:1px}
+.vbar input:focus-visible+.btn{outline:2px solid var(--brown);outline-offset:3px}
+footer{padding-block:28px 40px;text-align:center;color:var(--muted);font-size:.88rem}
+
+@media (max-width:820px){
+  .hero{padding-block:36px 56px}
+  .hero .wrap{grid-template-columns:minmax(0,1fr);gap:48px}
+  .portrait{max-width:210px;margin-right:18px}
+  .about{grid-template-columns:minmax(0,1fr)}
+  .contact{grid-template-columns:minmax(0,1fr);padding:32px 20px}
+  section{padding-block:56px}
+  .brand{font-size:.95rem}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Ohidur<span>.</span>Rahman</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#intro">Intro video</a>
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#activities">Activities</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Electrical &amp; Electronic Engineering</span>
+        <h1>Hi, I'm <em>Ohidur Rahman</em></h1>
+        <p class="role">EEE student seeking an Engineer – Electrical role</p>
+        <p class="lede">I work on circuit design, simulation and calculation-based projects, from renewable microgrids to antennas. I want to bring that design and analysis work into real project execution.</p>
+        <div class="cta">
+          <a class="btn solid" href="#projects">View projects</a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
+        </div>
+        <div class="facts">
+          <div class="fact"><b>3.17</b><span>CGPA at AIUB (out of 4.00)</span></div>
+          <div class="fact"><b>5.00</b><span>HSC GPA (out of 5.00)</span></div>
+          <div class="fact"><b>3</b><span>Simulation projects</span></div>
+        </div>
+      </div>
+      <div class="portrait">
+        <div class="frame"><img src="assets/profile.jpg" alt="Portrait of Ohidur Rahman in a black three-piece suit"></div>
+        <div class="badge"><b>BSc. EEE</b>AIUB, 2023–2026</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="intro">
+    <div class="wrap">
+      <div class="head"><small>Meet me</small><h2>Introduction video</h2><div class="bar"></div></div>
+      <div class="video-box">
+        <div class="player">
+          <video id="introVideo" controls playsinline preload="metadata" hidden></video>
+          <div class="empty" id="videoEmpty">
+            <div class="play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></div>
+            <b>My introduction video</b>
+            <span>A short video about who I am, what I study and the work I want to do. Coming soon.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="alt">
+    <div class="wrap">
+      <div class="head"><small>About me</small><h2>Career objective</h2><div class="bar"></div></div>
+      <div class="about">
+        <p>Electrical and Electronic Engineering student with a strong foundation in circuit design, simulation, and calculation-based project work. Seeking the position of Engineer – Electrical, where I can apply my design and engineering skills, contribute to project execution, and develop my expertise in a professional environment.</p>
+        <dl class="card info">
+          <div><dt>Location</dt><dd>Bashundhara R/A, Dhaka 1229, Bangladesh</dd></div>
+          <div><dt>Email</dt><dd>nazran527@gmail.com</dd></div>
+          <div><dt>Mobile</dt><dd>+880 1852313807</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="head"><small>Background</small><h2>Education</h2><div class="bar"></div></div>
+      <div class="timeline">
+        <div class="tl">
+          <div class="when">2023 – 2026</div>
+          <h3>BSc. in Electrical and Electronic Engineering</h3>
+          <div class="where">American International University-Bangladesh (AIUB)</div>
+          <span class="pill">CGPA 3.17 / 4.00 (up to 3rd year)</span>
+        </div>
+        <div class="tl">
+          <div class="when">2022</div>
+          <h3>Higher Secondary Certificate (HSC)</h3>
+          <div class="where">Government Mujib College</div>
+          <span class="pill">GPA 5.00 / 5.00</span>
+        </div>
+        <div class="tl">
+          <div class="when">2020</div>
+          <h3>Secondary School Certificate (SSC)</h3>
+          <div class="where">Kabi Jasimuddin High School</div>
+          <span class="pill">GPA 4.11 / 5.00</span>
+        </div>
+      </div>
+      <div class="card course">
+        <h3>Relevant coursework</h3>
+        <div class="chips">
+          <span class="chip">Electrical Circuit Analysis</span><span class="chip">Electrical Properties and Materials</span><span class="chip">Digital Logic Design</span><span class="chip">Electrical Machines</span><span class="chip">Power Systems</span><span class="chip">Power Stations and Substations</span><span class="chip">Power System Protection</span><span class="chip">Control Systems</span><span class="chip">Signals and Systems</span><span class="chip">Digital Signal Processing</span><span class="chip">Microprocessors and Embedded Systems</span><span class="chip">Electromagnetics</span><span class="chip">Communication Systems</span><span class="chip">Renewable Energy Systems</span><span class="chip">MATLAB and Engineering Simulation</span><span class="chip">EEE Laboratory</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="alt">
+    <div class="wrap">
+      <div class="head"><small>Toolbox</small><h2>Skills</h2><div class="bar"></div></div>
+      <div class="grid3">
+        <div class="card skill"><h3>Software tools</h3><div class="chips"><span class="chip">AutoCAD</span><span class="chip">MATLAB</span><span class="chip">Simulink</span></div></div>
+        <div class="card skill"><h3>Programming languages</h3><div class="chips"><span class="chip">C</span><span class="chip">C++</span></div></div>
+        <div class="card skill"><h3>Other skills</h3><div class="chips"><span class="chip">Electric Maintenance</span><span class="chip">Circuit Simulation</span><span class="chip">Electronic Safety</span></div></div>
+        <div class="card skill">
+          <h3>Languages</h3>
+          <div class="lang"><span>Bangla</span><span>Native</span></div>
+          <div class="lang"><span>English</span><span>Intermediate</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="head"><small>Work experience</small><h2>Engineering project development</h2><div class="bar"></div></div>
+      <div class="card work">
+        <div class="chips"><span class="chip">MATLAB</span><span class="chip">Simulink</span><span class="chip">COMSOL Multiphysics</span></div>
+        <ul>
+          <li>Applied MATLAB, Simulink, and COMSOL Multiphysics for engineering modeling, simulation, signal analysis, and design evaluation.</li>
+          <li>Explored hybrid solar-tidal microgrid development for rural electrification in coastal Bangladesh, focusing on renewable energy integration and system performance.</li>
+          <li>Investigated electrical and electronic system design concepts, emphasizing technical problem-solving, simulation, and engineering analysis.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="alt">
+    <div class="wrap">
+      <div class="head"><small>Selected work</small><h2>Projects</h2><div class="bar"></div></div>
+      <div class="grid3">
+        <article class="card proj">
+          <div class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></div>
+          <h3>Renewable Micro Grid</h3>
+          <p>Design and simulation of a solar PV and battery storage system for reliable renewable power supply.</p>
+          <div class="chips"><span class="chip">Solar PV</span><span class="chip">Battery</span><span class="chip">Simulation</span></div>
+        </article>
+        <article class="card proj">
+          <div class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-5 4-5 6 0s4 5 6 0 4-5 6 0"/><path d="M2 19h20M2 5h20" opacity=".5"/></svg></div>
+          <h3>Inverter</h3>
+          <p>Single-phase DC to AC inverter, covering component selection and circuit simulation.</p>
+          <div class="chips"><span class="chip">DC–AC</span><span class="chip">Single-phase</span></div>
+        </article>
+        <article class="card proj">
+          <div class="ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="12" rx="1.5"/><path d="M12 18v4M8 22h8M12 6V2"/></svg></div>
+          <h3>Antenna</h3>
+          <p>Microstrip patch antenna modeled and analysed in COMSOL Multiphysics.</p>
+          <div class="chips"><span class="chip">COMSOL</span><span class="chip">Microstrip patch</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="activities">
+    <div class="wrap">
+      <div class="head"><small>Beyond the classroom</small><h2>Co-curricular activities</h2><div class="bar"></div></div>
+      <div class="two">
+        <div class="card co">
+          <ul>
+            <li><b>Photography competition</b><span>Photograph selected and published in the AIUB University Calendar 2026.</span></li>
+            <li><b>Teamwork and collaboration</b><span>Coordinated technical tasks and contributed to collaborative problem-solving in academic projects.</span></li>
+            <li><b>Technical presentations</b><span>Prepared technical reports and project presentations to communicate engineering concepts.</span></li>
+          </ul>
+        </div>
+        <div class="card co">
+          <h3>Reference</h3>
+          <ul>
+            <li><b>Dr. Md. Kabiruzzaman</b><span>Associate Professor, Faculty of Engineering<br>American International University-Bangladesh (AIUB)<br>kabiruzzaman@aiub.edu</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h2>Let's work together</h2>
+          <p>I am open to Engineer – Electrical roles and project work. Send me a message and I will get back to you.</p>
+        </div>
+        <div class="rows">
+          <div class="row"><div><small>Email</small><span>nazran527@gmail.com</span></div><button class="copy" type="button" data-copy="nazran527@gmail.com">Copy</button></div>
+          <div class="row"><div><small>Mobile</small><span>+880 1852313807</span></div><button class="copy" type="button" data-copy="+880 1852313807">Copy</button></div>
+          <div class="row"><div><small>Address</small><span>H#235, R#2, Block F, Bashundhara R/A, Dhaka 1229</span></div></div>
+          <div class="row"><div><small>LinkedIn</small><span>Ohidur Rahman</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>© 2026 Ohidur Rahman. All rights reserved.</footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=b.getAttribute('data-copy');
+    var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1500)};
+    try{navigator.clipboard.writeText(t).then(done,function(){fallback(t,done)})}catch(e){fallback(t,done)}
+  });
+});
+var iv=document.getElementById('introVideo');
+iv.addEventListener('loadedmetadata',function(){iv.hidden=false;document.getElementById('videoEmpty').hidden=true});
+iv.src='assets/intro.mp4';
+var vf=document.getElementById('videoFile');if(vf)vf.addEventListener('change',function(e){
+  var f=e.target.files&&e.target.files[0];if(!f)return;
+  var v=document.getElementById('introVideo');
+  v.src=URL.createObjectURL(f);v.hidden=false;
+  document.getElementById('videoEmpty').hidden=true;
+});
+function fallback(t,done){
+  var s=document.createElement('textarea');s.value=t;document.body.appendChild(s);s.select();
+  try{document.execCommand('copy');done()}catch(e){}
+  document.body.removeChild(s);
+}
+</script>
+
+</body>
+</html>
