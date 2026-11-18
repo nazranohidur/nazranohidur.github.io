@@ -381,9 +381,17 @@ document.querySelectorAll('.copy').forEach(function(b){
     try{navigator.clipboard.writeText(t).then(done,function(){fallback(t,done)})}catch(e){fallback(t,done)}
   });
 });
-var iv=document.getElementById('introVideo');
 var DRIVE_LINK='https://drive.google.com/file/d/1dTbuW8iyxhRlvteJjmnsZoVGYZcvU9AF/view?usp=sharing';
-iv.src='assets/intro.mp4';
+(function(){
+  var m=DRIVE_LINK.match(/\/d\/([\w-]+)/);
+  if(!m)return;
+  var f=document.createElement('iframe');
+  f.src='https://drive.google.com/file/d/'+m[1]+'/preview';
+  f.allow='autoplay; fullscreen';f.allowFullscreen=true;f.title='Introduction video';
+  f.style.cssText='width:100%;height:100%;border:0;display:block';
+  var box=document.querySelector('.player');
+  box.innerHTML='';box.appendChild(f);
+})();
 var vf=document.getElementById('videoFile');if(vf)vf.addEventListener('change',function(e){
   var f=e.target.files&&e.target.files[0];if(!f)return;
   var v=document.getElementById('introVideo');
